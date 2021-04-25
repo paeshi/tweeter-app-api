@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+    
+
 
     def index
         tweets = Tweet.all
@@ -17,6 +19,26 @@ class TweetsController < ApplicationController
             render(status: 422, json: { tweet: tweet, errors: tweet.errors})
         end
     end
+
+    def update
+        tweet = Tweet.find(params[:id])
+        tweet.update(tweet_params)
+        render json: { status: 200, tweet: tweet}
+
+    end
+
+    def destroy
+        tweet = Tweet.destroy(params[:id])
+        render(status: 204)
+    end
+
+
+
+
+
+
+
+
 
     private
 
